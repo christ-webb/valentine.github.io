@@ -5,17 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Be My Valentine</title>
     <link rel="stylesheet" href="css/valentine.css" />
+    <style>
+      /* Style for individual letters to support fade-in */
+      .letter {
+        opacity: 0;
+        display: inline-block;
+        animation: fadeInLetter 0.5s forwards;
+      }
+
+      @keyframes fadeInLetter {
+        to { opacity: 1; }
+      }
+
+      /* Initially hide the gif and buttons until the sequence ends */
+      .delayed-content {
+        opacity: 0;
+        animation: fadeInContent 1s forwards;
+        /* Delay this until after the letters (approx 0.1s * 25 letters = 2.5s) */
+        animation-delay: 3s; 
+      }
+
+      @keyframes fadeInContent {
+        to { opacity: 1; }
+      }
+    </style>
   </head>
   <body>
     <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
-    <button class="answerButton" onclick="location.href='thankyou.html'">
-      Yes
-    </button>
-    <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
-    <br />
-    <img src="cat.gif" alt="cat asking question" class="responsive" />
+    
+    <div class="delayed-content">
+      <button class="answerButton" onclick="location.href='thankyou.html'">
+        Yes
+      </button>
+      <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
+      <br />
+      <img src="cat.gif" alt="cat asking question" class="responsive" />
+    </div>
 
     <script>
+      // 1. Logic to split text into individual animated spans
+      const questionDiv = document.querySelector('#valentineQuestion b');
+      const text = questionDiv.textContent;
+      questionDiv.textContent = ''; // Clear original text
+
+      [...text].forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00A0' : char; // Handle spaces
+        span.className = 'letter';
+        span.style.animationDelay = `${i * 0.1}s`; // Stagger each letter by 0.1s
+        questionDiv.appendChild(span);
+      });
+
+      // 2. Existing button growth logic
       document
         .getElementById("noButton")
         .addEventListener("click", function () {
@@ -25,7 +66,7 @@
           var currentFontSize = parseInt(
             window.getComputedStyle(yesButton).fontSize
           );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
+          yesButton.style.fontSize = currentFontSize + 10 + "px";
         });
     </script>
   </body>
