@@ -5,17 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Date</title>
     <link rel="stylesheet" href="css/date.css" />
+    <style>
+      /* Style for the elusive button to match your theme */
+      #movingButton {
+        position: absolute;
+        transition: 0.1s; /* Slight transition for a smoother jump */
+      }
+    </style>
   </head>
   <body>
     <h1 title="choose a date">Are you free on ...</h1>
     <form class="form-group">
-      <label>Which day: (select a date)</label>
+      <div style="font-size: 30px; margin-bottom: 20px;">
+        2/14/2026 @ 6PM?
+      </div>
       <div>
-        <input type="date" />
-        <button class="button" type="submit" formaction="food.html">
-          Submit
+        <button class="button" type="submit" formaction="pre-food.html">
+          Yes!
+        </button>
+        <button type="button" class="button" id="movingButton">
+          no I hate you
         </button>
       </div>
     </form>
+
+    <script>
+      const moveButton = document.getElementById('movingButton');
+
+      // Function to move the button to a random spot within the window
+      function moveTarget() {
+        const x = Math.random() * (window.innerWidth - moveButton.offsetWidth);
+        const y = Math.random() * (window.innerHeight - moveButton.offsetHeight);
+
+        moveButton.style.left = `${x}px`;
+        moveButton.style.top = `${y}px`;
+      }
+
+      // Moves the button when the user hovers or tries to click
+      moveButton.addEventListener('mouseenter', moveTarget);
+      moveButton.addEventListener('click', moveTarget);
+    </script>
   </body>
 </html>

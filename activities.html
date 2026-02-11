@@ -5,73 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Activities</title>
     <link rel="stylesheet" href="css/activities.css" />
+    <style>
+      /* Simple styling for the warning message */
+      #warning-message {
+        color: #ff4d4d;
+        font-size: 14px;
+        margin-top: 10px;
+        display: block; /* Shown by default since button is disabled */
+      }
+    </style>
   </head>
   <body>
     <div id="activityquestion"><b>What are we doing after?</b></div>
     <div class="activities-selection">
+      
       <div class="activity-item">
-        <img src="activities/aquarium.jpeg" alt="aquarium" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="aquarium"
-          />aquarium</label
-        >
+        <img src="activities/game.jpg" alt="games" />
+        <label><input type="checkbox" name="activities" value="games" />games</label>
       </div>
+
       <div class="activity-item">
-        <img src="activities/arcade.jpeg" alt="arcade" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="arcade"
-          />arcade</label
-        >
+        <img src="activities/movie.jpg" alt="movie night" />
+        <label><input type="checkbox" name="activities" value="movie" />movie night</label>
       </div>
+
       <div class="activity-item">
-        <img src="activities/cinema.jpeg" alt="cinema" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="cinema"
-          />cinema</label
-        >
+        <img src="activities/keramika.jpeg" alt="pottery painting" />
+        <label><input type="checkbox" name="activities" value="pottery painting" />pottery painting</label>
       </div>
+
       <div class="activity-item">
-        <img src="activities/keramika.jpeg" alt="ceramics" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="ceramics"
-          />ceramics</label
-        >
-      </div>
-      <div class="activity-item">
-        <img src="activities/kunsthalle.jpeg" alt="kunsthalle" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="kunsthalle"
-          />exhibition</label
-        >
-      </div>
-      <div class="activity-item">
-        <img src="activities/park.jpeg" alt="park.jpeg" />
-        <label
-          ><input
-            type="checkbox"
-            name="activities"
-            value="park.jpeg"
-          />park</label
-        >
+        <img src="activities/ginger.jpg" alt="ginger" />
+        <label><input type="checkbox" name="activities" value="ginger" />gingerbread house</label>
       </div>
     </div>
-    <button class="button" onclick="location.href='lastpage.html'">
+
+    <div id="warning-message">You're missing something!</div>
+
+    <button id="continueBtn" class="button" onclick="location.href='lastpage.html'" disabled>
       Last page
     </button>
+
+    <script>
+      const checkboxes = document.querySelectorAll('input[name="activities"]');
+      const nextButton = document.getElementById('continueBtn');
+      const warning = document.getElementById('warning-message');
+
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          const allChecked = Array.from(checkboxes).every(c => c.checked);
+          
+          // Toggle button
+          nextButton.disabled = !allChecked;
+
+          // Toggle message visibility
+          if (allChecked) {
+            warning.style.display = 'none';
+          } else {
+            warning.style.display = 'block';
+          }
+        });
+      });
+    </script>
   </body>
 </html>
