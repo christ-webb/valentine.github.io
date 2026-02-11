@@ -6,12 +6,12 @@
     <title>Activities</title>
     <link rel="stylesheet" href="css/activities.css" />
     <style>
-      /* Simple styling for the warning message */
+      /* Styling for the warning message, hidden by default */
       #warning-message {
         color: #ff4d4d;
         font-size: 14px;
         margin-top: 10px;
-        display: block; /* Shown by default since button is disabled */
+        display: none; 
       }
     </style>
   </head>
@@ -42,7 +42,7 @@
 
     <div id="warning-message">You're missing something!</div>
 
-    <button id="continueBtn" class="button" onclick="location.href='lastpage.html'" disabled>
+    <button id="continueBtn" class="button">
       Last page
     </button>
 
@@ -51,18 +51,24 @@
       const nextButton = document.getElementById('continueBtn');
       const warning = document.getElementById('warning-message');
 
+      nextButton.addEventListener('click', () => {
+        const allChecked = Array.from(checkboxes).every(c => c.checked);
+        
+        if (allChecked) {
+          // If all selected, proceed to the next page
+          location.href = 'lastpage.html';
+        } else {
+          // If not all selected, show the warning message
+          warning.style.display = 'block';
+        }
+      });
+
+      // Optional: Hide the warning again if they start checking boxes
       checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
           const allChecked = Array.from(checkboxes).every(c => c.checked);
-          
-          // Toggle button
-          nextButton.disabled = !allChecked;
-
-          // Toggle message visibility
           if (allChecked) {
             warning.style.display = 'none';
-          } else {
-            warning.style.display = 'block';
           }
         });
       });

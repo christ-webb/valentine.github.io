@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link rel="stylesheet" href="css/valentine.css" />
+    <style>
+      /* Centering the text specifically for this intro sequence */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      #introText {
+        font-size: 50px;
+        transition: opacity 0.5s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="introText">Hey!</div>
+
+    <script>
+      const textElement = document.getElementById("introText");
+      
+      // Sequence of messages to display
+      const sequence = [
+        { text: "I have a question for you", delay: 3000 },
+        { text: "I think it might be what you've been waiting for...", delay: 6000 }
+      ];
+
+      // Update text at specific intervals
+      sequence.forEach((item) => {
+        setTimeout(() => {
+          textElement.style.opacity = 0; // Fade out
+          setTimeout(() => {
+            textElement.innerText = item.text;
+            textElement.style.opacity = 1; // Fade back in
+          }, 500);
+        }, item.delay);
+      });
+
+      // Automatically switch to index.html after the final message
+      setTimeout(() => {
+        location.href = "index.html";
+      }, 10000); // Total wait time before redirecting
+    </script>
+  </body>
+</html>

@@ -6,7 +6,6 @@
     <title>Our Valentine's Date</title>
     <link rel="stylesheet" href="css/flower.css" />
     <style>
-      
       /* Yellow Tulip Petals */
       .f-wrapper .flower__leaf:not(:first-child) {
           background-image: linear-gradient(to bottom, #ffff00, #ffcc00, #1a233a 99%);
@@ -34,15 +33,27 @@
 
       /* Adjusting leaf shape to be more tulip-like (narrower and taller) */
       .flower__leaf {
-          clip-path: ellipse(40% 50% at 50% 50%); /* cite: 16 */
+          clip-path: ellipse(40% 50% at 50% 50%);
       }
       .flower__leaf--1 {
-          border-radius: 50% 50% 20% 20% / 80% 80% 20% 20%; /* cite: 16 */
+          border-radius: 50% 50% 20% 20% / 80% 80% 20% 20%;
+      }
+
+      /* Style for the footer text */
+      #footer-text {
+          position: fixed;
+          bottom: 20px;
+          width: 100%;
+          text-align: center;
+          font-size: 24px;
+          color: #FF9494;
+          font-family: courier;
       }
     </style>
   </head>
   <body>
     <div id="thankyou"><b>Thank you for being my girlfriend, now time for gifts!</b></div>
+    
     <div class="flower">
       <div class="f-wrapper">
         <div class="flower__line"></div>
@@ -54,7 +65,7 @@
           <div class="flower__leaf flower__leaf--5"></div>
           <div class="flower__leaf flower__leaf--6"></div>
           <div class="flower__leaf flower__leaf--7"></div>
-          <div class="flower__leaf flower__leaf--8 flower__fall-down--yellow"></div>
+          <div class="flower__leaf flower__leaf--8"></div>
         </div>
       </div>
 
@@ -68,7 +79,7 @@
           <div class="flower__leaf flower__leaf--5"></div>
           <div class="flower__leaf flower__leaf--6"></div>
           <div class="flower__leaf flower__leaf--7"></div>
-          <div class="flower__leaf flower__leaf--8 flower__fall-down--pink"></div>
+          <div class="flower__leaf flower__leaf--8"></div>
         </div>
       </div>
 
@@ -82,10 +93,12 @@
           <div class="flower__leaf flower__leaf--5"></div>
           <div class="flower__leaf flower__leaf--6"></div>
           <div class="flower__leaf flower__leaf--7"></div>
-          <div class="flower__leaf flower__leaf--8 flower__fall-down--pink"></div>
+          <div class="flower__leaf flower__leaf--8"></div>
         </div>
       </div>
       <div class="flower__glass"></div>
     </div>
+
+    <div id="footer-text">Expect more coming up soon!</div>
   </body>
 </html>
