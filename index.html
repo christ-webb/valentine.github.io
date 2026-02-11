@@ -3,30 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Be My Valentine</title>
+    <title>Welcome</title>
     <link rel="stylesheet" href="css/valentine.css" />
+    <style>
+      /* Centering the text specifically for this intro sequence */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      #introText {
+        font-size: 50px;
+        transition: opacity 0.5s ease-in-out;
+      }
+    </style>
   </head>
   <body>
-    <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
-    <button class="answerButton" onclick="location.href='thankyou.html'">
-      Yes
-    </button>
-    <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
-    <br />
-    <img src="cat.gif" alt="cat asking question" class="responsive" />
+    <div id="introText">Hey!</div>
 
     <script>
-      document
-        .getElementById("noButton")
-        .addEventListener("click", function () {
-          var yesButton = document.querySelector(
-            'button[onclick*="thankyou.html"]'
-          );
-          var currentFontSize = parseInt(
-            window.getComputedStyle(yesButton).fontSize
-          );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
-        });
+      const textElement = document.getElementById("introText");
+      
+      // Sequence of messages to display
+      const sequence = [
+        { text: "I have a question for you", delay: 3000 },
+        { text: "I think it might be what you've been waiting for...", delay: 6000 }
+      ];
+
+      // Update text at specific intervals
+      sequence.forEach((item) => {
+        setTimeout(() => {
+          textElement.style.opacity = 0; // Fade out
+          setTimeout(() => {
+            textElement.innerText = item.text;
+            textElement.style.opacity = 1; // Fade back in
+          }, 500);
+        }, item.delay);
+      });
+
+      // Automatically switch to index.html after the final message
+      setTimeout(() => {
+        location.href = "question.html";
+      }, 10000); // Total wait time before redirecting
     </script>
   </body>
 </html>
